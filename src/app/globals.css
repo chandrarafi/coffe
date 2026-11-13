@@ -1,0 +1,78 @@
+@import "../styles/webflow.css";
+@import "../styles/main.css";
+
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-matcha: "Founders Grotesk Condensed", Arial, sans-serif;
+  --color-matcha-bg: #b6cba5;
+}
+
+body {
+  background-color: #b6cba5;
+  color: #1A1A1A;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Loader Styles */
+.loader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(182, 203, 165, 0.99);
+  display: grid;
+  place-content: flex-end;
+  padding-right: 2.5em;
+  padding-bottom: 2.5em;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+html.has-seq-ready.fonts-loaded.is-ready .loader,
+html.is-ready .loader {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.loader::before {
+  content: "";
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: color-burn;
+  background-image: url(https://cdn.prod.website-files.com/686c09a33211842a0ac0183d/68b0b1e2ae528702c898a058_pattern.png);
+  background-position: 0 0;
+  background-size: 7rem 7rem;
+  position: absolute;
+  inset: 0%;
+}
+
+.loader::after {
+  content: "";
+  height: 1.25em;
+  width: 1.25em;
+  border: 0.125em solid #335c30;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: loader-rotation 1s linear infinite;
+  transition: opacity 0.25s ease;
+}
+
+html.has-seq-ready .loader::after {
+  opacity: 0;
+}
+
+@keyframes loader-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
